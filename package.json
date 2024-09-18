@@ -5,7 +5,7 @@
   "scripts": {
     "start:dev": "tsx src/server.ts",
     "start:watch": "tsx watch src/server.ts",
-    "start:dist": "npm run build && node dist/src/index.js",
+    "start:dist": "npm run build && node dist/server.js",
     "build": "tsup src",
     "test": "jest --passWithNoTests",
     "test:watch": "npm test --watch",
