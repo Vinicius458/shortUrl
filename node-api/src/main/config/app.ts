@@ -1,7 +1,7 @@
 import express, { Express } from "express";
 // import { Sequelize } from "sequelize-typescript";
-import setupMiddlewares from "@/main/config/middlewares";
-import setupRoutes from "@/main/config/routes";
+import setupMiddlewares from "./middlewares";
+// import setupRoutes from "@/main/config/routes";
 // import CustomerModel from "../customer/repository/sequelize/customer.model";
 
 // import ProductModel from "../product/repository/sequelize/product.model";
@@ -9,7 +9,7 @@ import setupRoutes from "@/main/config/routes";
 export const setupApp = (): Express => {
   const app: Express = express();
   setupMiddlewares(app);
-  setupRoutes(app);
+  // setupRoutes(app);
 
   // export let sequelize: Sequelize;
 

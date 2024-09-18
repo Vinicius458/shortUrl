@@ -1,4 +1,4 @@
-import { bodyParser, cors, contentType } from "@/main/middlewares";
+import { bodyParser, cors, contentType } from "../middlewares";
 
 import { Express } from "express";
 

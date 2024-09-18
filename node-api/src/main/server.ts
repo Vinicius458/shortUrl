@@ -1,4 +1,4 @@
-import { setupApp } from "@/main/config/app";
+import { setupApp } from "./config/app";
 import dotenv from "dotenv";
 
 dotenv.config();
