@@ -8,9 +8,9 @@
     "start:dist": "npm run build && node dist/main/server.js",
     "build": "tsup src",
     "test": "jest --passWithNoTests",
-    "test:watch": "npm test --watch",
-    "test:staged": "npm test -- --findRelatedTests",
-    "test:ci": "npm test -- --coverage",
+    "test:watch": "npm run test --watch",
+    "test:staged": "npm run test --findRelatedTests",
+    "test:ci": "npm run test --coverage",
     "husky:prepare": "husky init"
   },
   "keywords": [],
