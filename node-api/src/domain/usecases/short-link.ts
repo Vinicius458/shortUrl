@@ -1,5 +1,5 @@
 export interface ShortLink {
-  shortener: (shortLinkParams: ShortLink.Params) => Promise<string>;
+  execute: (shortLinkParams: ShortLink.Params) => Promise<string>;
 }
 
 export namespace ShortLink {
