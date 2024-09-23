@@ -51,4 +51,23 @@ describe("UserRepository", () => {
 
     expect(foundUser).toBeNull();
   });
+
+  it("should return true if the user with the email exists", async () => {
+    const user = new User("Another User", "existing@example.com");
+    user.password = "hashPassword";
+    await userRepository.create(user);
+    const emailExists = await userRepository.checkByEmail(
+      "existing@example.com"
+    );
+
+    expect(emailExists).toBe(true);
+  });
+
+  it("should return false if the user with the email not exists", async () => {
+    const emailExists = await userRepository.checkByEmail(
+      "nonexistent@example.com"
+    );
+
+    expect(emailExists).toBe(false);
+  });
 });

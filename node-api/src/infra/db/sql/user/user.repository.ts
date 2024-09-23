@@ -28,4 +28,8 @@ export default class UserRepository implements UserRepositoryInterface {
     }
     return null;
   }
+  async checkByEmail(email: string): Promise<Boolean> {
+    const user = await this.userRepo.findOneBy({ email });
+    return user != null;
+  }
 }
