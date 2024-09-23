@@ -4,4 +4,5 @@ export default interface UserRepositoryInterface {
   create(userEntity: User): Promise<string>;
 
   find(userId: string): Promise<User | null>;
+  checkByEmail(email: string): Promise<Boolean>;
 }
