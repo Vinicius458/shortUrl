@@ -36,19 +36,16 @@ export default class LinkRepository implements LinkRepositoryInterface {
     if (updateData.originaUrl) link.originalUrl = updateData.originaUrl;
     if (updateData.shortenedUrl) link.shortenedUrl = updateData.shortenedUrl;
 
-    // Salvar as alterações
     await this.linkRepo.save(link);
   }
 
   async delete(linkId: string): Promise<void> {
-    // Verifica se o link existe
     const link = await this.linkRepo.findOne({ where: { id: linkId } });
 
     if (!link) {
       throw new Error("Link not found");
     }
 
-    // Remove o link
     await this.linkRepo.remove(link);
   }
 }
