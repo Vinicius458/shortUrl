@@ -1,7 +1,11 @@
 export default interface LinkInterface {
-  combineLink(): void;
+  combineLink(host: string): void;
 
-  get shortLink(): string;
+  get shortenedUrl(): string;
 
   get originaUrl(): string;
+
+  get userId(): string;
+
+  set userId(id: string);
 }
