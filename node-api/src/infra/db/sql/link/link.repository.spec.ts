@@ -25,11 +25,13 @@ describe("LinkRepository Integration Test", () => {
   });
 
   it("should create a link record in the database", async () => {
-    const user = new User("user_id", "user_name", "user_email");
+    const user = new User("user_name", "user_email");
+    user.password = "hashPassword";
 
     const userCreated = await userRepository.create({
       name: user.name,
       email: user.email,
+      password: user.password,
     });
 
     const userSaved = await userRepository.save(userCreated);
@@ -51,20 +53,22 @@ describe("LinkRepository Integration Test", () => {
   });
 
   it("should find all links by userId", async () => {
-    const user1 = new User("user1_id", "user1_name", "user1_email");
-
+    const user1 = new User("user1_name", "user1_email");
+    user1.password = "hashPassword";
     const userCreated1 = await userRepository.create({
       name: user1.name,
       email: user1.email,
+      password: user1.password,
     });
 
     const userSaved1 = await userRepository.save(userCreated1);
 
-    const user2 = new User("user2_id", "user2_name", "user2_email");
-
+    const user2 = new User("user2_name", "user2_email");
+    user2.password = "hashPassword2";
     const userCreated2 = await userRepository.create({
       name: user2.name,
       email: user2.email,
+      password: user2.password,
     });
 
     await userRepository.save(userCreated2);
@@ -83,11 +87,12 @@ describe("LinkRepository Integration Test", () => {
   });
 
   it("Should update with success", async () => {
-    const user = new User("user_id", "user_name", "user_email");
-
+    const user = new User("user_name", "user_email");
+    user.password = "hashPassword";
     const userCreated = await userRepository.create({
       name: user.name,
       email: user.email,
+      password: user.password,
     });
 
     const userSaved = await userRepository.save(userCreated);
@@ -119,11 +124,12 @@ describe("LinkRepository Integration Test", () => {
   });
 
   it("Should remove the link with success", async () => {
-    const user = new User("user_id", "user_name", "user_email");
-
+    const user = new User("user_name", "user_email");
+    user.password = "hashPassword";
     const userCreated = await userRepository.create({
       name: user.name,
       email: user.email,
+      password: user.password,
     });
 
     const userSaved = await userRepository.save(userCreated);
