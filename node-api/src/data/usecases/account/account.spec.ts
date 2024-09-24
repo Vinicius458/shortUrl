@@ -4,8 +4,6 @@ import User from "@/domain/entities/user/user";
 import UserRepositoryInterface from "@/data/protocols/db/user/user-repository.interface";
 import { Hasher } from "@/data/protocols";
 
-const output = "localhost:4200/h3jahb";
-
 export const mockAccountParams = () => ({
   name: "Joao",
   email: "joao@email.com",
