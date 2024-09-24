@@ -15,6 +15,9 @@ export class User {
   @Column({ type: "varchar", length: 255 })
   password: string;
 
+  @Column({ type: "varchar", length: 255, nullable: true })
+  token: string;
+
   // Relacionamento One-to-Many com a entidade Link
   @OneToMany(() => Link, (link) => link.user)
   links: Link[];
