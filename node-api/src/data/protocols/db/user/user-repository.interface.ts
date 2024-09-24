@@ -5,4 +5,5 @@ export interface UserRepositoryInterface {
 
   find(userId: string): Promise<User | null>;
   checkByEmail(email: string): Promise<Boolean>;
+  loadByEmail(email: string): Promise<User | null>;
 }
