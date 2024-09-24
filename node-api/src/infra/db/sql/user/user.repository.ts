@@ -1,6 +1,6 @@
 import { DataSource, Repository } from "typeorm";
 import { User as UserModel } from "../user/user.model";
-import UserRepositoryInterface from "@/data/protocols/db/user/user-repository.interface";
+import { UserRepositoryInterface } from "@/data/protocols/db/user/user-repository.interface";
 import User from "@/domain/entities/user/user";
 
 export default class UserRepository implements UserRepositoryInterface {
