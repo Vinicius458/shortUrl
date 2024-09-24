@@ -1,6 +1,6 @@
 import { DataSource, Repository } from "typeorm";
 import { Link as LinkModel } from "../link/link.model";
-import LinkRepositoryInterface from "@/data/protocols/db/link/link-repository.interface";
+import { LinkRepositoryInterface } from "@/data/protocols/db/link/link-repository.interface";
 import Link from "@/domain/entities/link/link";
 import LinkInterface from "@/domain/entities/link/link.interface";
 

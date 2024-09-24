@@ -1,7 +1,7 @@
 import { Account } from "@/domain/usecases";
 import { AccountUseCase } from "./account";
 import User from "@/domain/entities/user/user";
-import UserRepositoryInterface from "@/data/protocols/db/user/user-repository.interface";
+import { UserRepositoryInterface } from "@/data/protocols/db/user/user-repository.interface";
 import { Hasher } from "@/data/protocols";
 
 export const mockAccountParams = () => ({

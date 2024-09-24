@@ -1,6 +1,6 @@
 import { Account } from "@/domain/usecases";
 import { Hasher } from "@/data/protocols";
-import UserRepositoryInterface from "@/data/protocols/db/user/user-repository.interface";
+import { UserRepositoryInterface } from "@/data/protocols/db/user/user-repository.interface";
 import User from "@/domain/entities/user/user";
 
 export class AccountUseCase implements Account {

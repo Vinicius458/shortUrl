@@ -2,8 +2,8 @@ import { ShortLink } from "@/domain/usecases";
 import { ShortLinkUseCase } from "./short-link";
 import User from "@/domain/entities/user/user";
 import { UrlConverter } from "@/data/protocols/shorter/shorten";
-import UserRepositoryInterface from "@/data/protocols/db/user/user-repository.interface";
-import LinkRepositoryInterface from "@/data/protocols/db/link/link-repository.interface";
+import { UserRepositoryInterface } from "@/data/protocols/db/user/user-repository.interface";
+import { LinkRepositoryInterface } from "@/data/protocols/db/link/link-repository.interface";
 import Link from "@/domain/entities/link/link";
 
 const input: ShortLink.Params = {
