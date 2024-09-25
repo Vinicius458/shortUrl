@@ -70,4 +70,63 @@ describe("UserRepository", () => {
 
     expect(emailExists).toBe(false);
   });
+
+  it("should return user if the user by email exists", async () => {
+    const user = new User("Another User", "existing@example.com");
+    user.password = "hashPassword";
+    await userRepository.create(user);
+    const userResult = await userRepository.loadByEmail("existing@example.com");
+
+    expect(userResult).toBeDefined();
+    expect(userResult?.name).toBe("Another User");
+    expect(userResult?.email).toBe("existing@example.com");
+  });
+
+  it("should return null if the user by email not exists", async () => {
+    const user = await userRepository.loadByEmail("nonexistent@example.com");
+
+    expect(user).toBe(null);
+  });
+
+  it("should update the access token of an existing user", async () => {
+    const user = new User("John Doe", "john.doe@example.com");
+    user.password = "securepassword";
+    await userRepository.create(user);
+
+    const newToken = "newAccessToken";
+    await userRepository.updateAccessToken(user.id, newToken);
+
+    const updatedUser = await userRepository.find(user.id);
+    expect(updatedUser).not.toBeNull();
+    expect(updatedUser?.token).toBe(newToken);
+  });
+
+  it("should throw an error if the user does not exist", async () => {
+    await expect(
+      userRepository.updateAccessToken("nonExistentId", "token")
+    ).rejects.toThrow("User not found");
+  });
+
+  it("should return the user ID for a valid token", async () => {
+    const user = new User("John Doe", "john.doe@example.com");
+    user.password = "securepassword";
+    const userIdCreated = await userRepository.create(user);
+
+    const newToken = "newAccessToken";
+    await userRepository.updateAccessToken(user.id, newToken);
+
+    // Act: Carregar o usuário pelo token
+    const userId = await userRepository.loadByToken("newAccessToken");
+
+    // Assert: Verificar se o ID do usuário retornado é correto
+    expect(userId).toBe(userIdCreated);
+  });
+
+  it("should return null for an invalid token", async () => {
+    // Act: Tentar carregar um usuário com um token inexistente
+    const userId = await userRepository.loadByToken("invalidToken");
+
+    // Assert: Verificar se o retorno é nulo
+    expect(userId).toBeNull();
+  });
 });
