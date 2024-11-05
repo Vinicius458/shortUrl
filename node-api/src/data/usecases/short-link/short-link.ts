@@ -13,7 +13,7 @@ export class ShortLinkUseCase implements ShortLink {
   ) {}
 
   async execute(shortLinkParams: ShortLink.Params): Promise<string> {
-    const shortUrl = await this.urlConverter.shorten(shortLinkParams.link);
+    const shortUrl = await this.urlConverter.shorten();
     const link = new Link(shortUrl, shortLinkParams.link);
 
     if (shortLinkParams.userId) {
