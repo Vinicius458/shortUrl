@@ -23,7 +23,11 @@ export default class LinkRepository implements LinkRepositoryInterface {
 
   async findAll(userId: string): Promise<Array<LinkInterface>> {
     const links = await this.linkRepo.find({ where: { user: { id: userId } } });
-    return links.map((link) => new Link(link.shortenedUrl, link.originalUrl));
+    return links.map((link) => {
+      const linkEntity = new Link(link.shortenedUrl, link.originalUrl);
+      linkEntity.createdAt = link.createdAt;
+      return linkEntity;
+    });
   }
   async findByShorterUrl(shorterUrl: string): Promise<LinkInterface> {
     const link = await this.linkRepo.findOne({

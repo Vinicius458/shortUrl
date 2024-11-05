@@ -20,7 +20,6 @@ export class ShortLinkUseCase implements ShortLink {
       const user = await this.userRepository.find(shortLinkParams.userId);
       if (user) {
         link.userId = shortLinkParams.userId;
-        await this.linkRepository.create(link);
       }
     }
     await this.linkRepository.create(link);

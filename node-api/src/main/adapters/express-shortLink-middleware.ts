@@ -4,8 +4,10 @@ import { Request, Response, NextFunction } from "express";
 
 export const adaptShortLinkMiddleware = (middleware: Middleware) => {
   return async (req: Request, res: Response, next: NextFunction) => {
+    const tokenWithBearer = req.headers.authorization;
+    const token = tokenWithBearer?.split(" ")[1];
     const request = {
-      accessToken: req.headers?.["x-access-token"],
+      accessToken: token,
       ...(req.headers || {}),
     };
 

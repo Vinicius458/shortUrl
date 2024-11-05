@@ -8,4 +8,7 @@ export default interface LinkInterface {
   get userId(): string;
 
   set userId(id: string);
+  get createdAt(): Date;
+
+  set createdAt(date: Date);
 }
