@@ -39,6 +39,7 @@ export class UserRepository implements UserRepositoryInterface {
     if (user) {
       const userEntity = new User(user.name, user.email);
       userEntity.id = user.id;
+      userEntity.password = user.password;
       return userEntity;
     }
     return null;
