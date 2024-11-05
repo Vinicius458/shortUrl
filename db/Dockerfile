@@ -11,4 +11,4 @@ RUN mkdir -p /usr/src/app/database
 WORKDIR /usr/src/app
 
 # Comando para manter o contêiner rodando (em modo shell)
-CMD ["sqlite3", "/usr/src/app/database/database.db"]
+CMD ["sh", "-c", "sqlite3 /usr/src/app/database/database.db '.databases' && tail -f /dev/null"]

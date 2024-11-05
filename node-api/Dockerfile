@@ -30,7 +30,7 @@ RUN npm install --only=production
 COPY --from=build /usr/src/app/dist ./dist
 
 # Expor a porta usada pelo aplicativo
-EXPOSE 3000
+EXPOSE 5050
 
 # Comando para rodar a aplicação
 CMD ["node", "dist/main/server.js"]

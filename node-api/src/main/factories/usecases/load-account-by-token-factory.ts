@@ -5,9 +5,8 @@ import { JwtAdapter } from "@/infra/cryptography";
 import { AppDataSource } from "@/infra/db/sql/config/data-source";
 import { UserRepository } from "@/infra/db/sql/user/user.repository";
 
-export const makeDbLoadAccountByToken =
-  async (): Promise<LoadAccountByToken> => {
-    const jwtAdapter = new JwtAdapter(env.jwtSecret);
-    const userRepository = new UserRepository(AppDataSource);
-    return new DbLoadAccountByToken(jwtAdapter, userRepository);
-  };
+export const makeDbLoadAccountByToken = (): LoadAccountByToken => {
+  const jwtAdapter = new JwtAdapter(env.jwtSecret);
+  const userRepository = new UserRepository(AppDataSource);
+  return new DbLoadAccountByToken(jwtAdapter, userRepository);
+};

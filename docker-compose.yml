@@ -6,26 +6,12 @@ services:
       context: ./node-api
       dockerfile: Dockerfile # Dockerfile do Node.js
     ports:
-      - "3000:3000"
+      - "5050:5050"
     volumes:
       - ./node-api:/usr/src/app
       - /usr/src/app/node_modules
-    depends_on:
-      - sqlite
+      - ./node-api/database.sqlite:/usr/src/app/database/database.db
     environment:
-      DATABASE_URL: "sqlite:/usr/src/app/database/database.db"
-    networks:
-      - app-network
+      DATABASE_URL: "/usr/src/app/database/database.db"
+      PORT: 5050
 
-  sqlite:
-    build:
-      context: ./db
-      dockerfile: Dockerfile # Dockerfile do SQLite
-    volumes:
-      - ./db/volume:/usr/src/app/database
-    networks:
-      - app-network
-
-networks:
-  app-network:
-    driver: bridge

@@ -8,6 +8,7 @@ export const adaptShortLinkMiddleware = (middleware: Middleware) => {
       accessToken: req.headers?.["x-access-token"],
       ...(req.headers || {}),
     };
+
     const httpResponse = await middleware.handle(request);
     Object.assign(req, httpResponse.body);
     next();
