@@ -12,10 +12,7 @@ export class ShortLinkController implements Controller {
     request: LoadSurveyResultController.Request
   ): Promise<HttpResponse> {
     try {
-      console.log("controller");
-
       const { link, accountId } = request;
-      console.log({ link, accountId });
 
       const error = this.validation.validate(request);
       if (error) {
