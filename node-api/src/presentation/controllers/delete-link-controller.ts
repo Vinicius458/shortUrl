@@ -9,7 +9,7 @@ export class deleteLinkController implements Controller {
     try {
       const { accountId } = request;
       await this.deleteLinkUseCase.execute(accountId);
-      return ok({ message: "Delete all links" });
+      return ok({ message: "deleted all links" });
     } catch (error: any) {
       return serverError(error);
     }

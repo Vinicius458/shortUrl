@@ -12,8 +12,8 @@ export default async (router: Router): Promise<void> => {
   const redirect = await makeRedirectController();
   const listController = await makeListLinkController();
 
-  router.post("/short-link", shortLinkAuth, adaptRoute(shortLink));
-  router.delete("/short-link", auth, adaptRoute(deleteLink));
-  router.get("/link/:shortLink", adaptRedirectRoute(redirect));
-  router.get("/list-link", auth, adaptRoute(listController));
+  router.get("/url", auth, adaptRoute(listController));
+  router.delete("/url", auth, adaptRoute(deleteLink));
+  router.post("/url/shorten", shortLinkAuth, adaptRoute(shortLink));
+  router.get("/:shortLink", adaptRedirectRoute(redirect));
 };

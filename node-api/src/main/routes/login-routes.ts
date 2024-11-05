@@ -6,6 +6,6 @@ import { Router } from "express";
 export default async (router: Router): Promise<void> => {
   const signUpController = await makeSignUpController();
   const loginController = await makeLoginController();
-  router.post("/signup", adaptRoute(signUpController));
-  router.post("/login", adaptRoute(loginController));
+  router.post("/auth/signup", adaptRoute(signUpController));
+  router.post("/auth/login", adaptRoute(loginController));
 };

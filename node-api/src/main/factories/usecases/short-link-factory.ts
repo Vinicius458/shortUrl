@@ -7,7 +7,7 @@ import env from "@/main/config/env";
 import { Shorter } from "@/infra/shorter/shorter";
 
 export const makeDBshortLink = async (): Promise<ShortLink> => {
-  const host = `${env.appHost}${env.port}/api/link`;
+  const host = `${env.appHost}${env.port}/api`;
   const userRepository = new UserRepository(AppDataSource);
   const linkRepository = new LinkRepository(AppDataSource);
   const shorter = new Shorter();

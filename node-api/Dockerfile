@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Instalar dependências de produção e desenvolvimento
-RUN npm install
+RUN npm install --legacy-peer-deps
 
 # Copiar todo o código do projeto para dentro do contêiner
 COPY . .
