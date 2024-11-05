@@ -1,21 +1,29 @@
 import LinkInterface from "./link.interface";
 
 export default class Link implements LinkInterface {
+  private _userId: string;
   constructor(
-    private _host: string,
-    private _shortLink: string,
+    private _shortenedUrl: string,
     private _originalUrl: string
   ) {}
 
-  get shortLink(): string {
-    return this._shortLink;
+  get shortenedUrl(): string {
+    return this._shortenedUrl;
   }
 
   get originaUrl(): string {
     return this._originalUrl;
   }
 
-  combineLink() {
-    this._shortLink = `${this._host}/${this._shortLink}`;
+  set userId(id: string) {
+    this._userId = id;
+  }
+
+  get userId(): string {
+    return this._userId;
+  }
+
+  combineLink(host: string): string {
+    return `${host}/${this._shortenedUrl}`;
   }
 }

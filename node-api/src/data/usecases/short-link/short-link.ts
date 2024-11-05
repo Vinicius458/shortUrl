@@ -23,6 +23,7 @@ export class ShortLinkUseCase implements ShortLink {
         await this.linkRepository.create(link);
       }
     }
+    await this.linkRepository.create(link);
     return link.combineLink(this.host);
   }
 }

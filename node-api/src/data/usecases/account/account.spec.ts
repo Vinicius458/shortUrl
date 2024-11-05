@@ -18,9 +18,11 @@ const HasherMock = (): jest.Mocked<Hasher> => {
 const UserMockRepository = (): jest.Mocked<UserRepositoryInterface> => {
   return {
     find: jest.fn(),
-
-    create: jest.fn().mockResolvedValue("hvtvbyvy"),
+    add: jest.fn().mockResolvedValue("hvtvbyvy"),
     checkByEmail: jest.fn().mockImplementation(() => Promise.resolve(false)),
+    loadByEmail: jest.fn(),
+    loadByToken: jest.fn(),
+    updateAccessToken: jest.fn(),
   };
 };
 
@@ -61,7 +63,7 @@ describe("Unit test account use case", () => {
   test("Should call AddAccountRepository with correct values", async () => {
     const { sut, userRepositoryMock } = makeSut();
     const addAccountParams = mockAccountParams();
-    const userSpy = jest.spyOn(userRepositoryMock, "create");
+    const userSpy = jest.spyOn(userRepositoryMock, "add");
 
     await sut.add(addAccountParams);
     const user = new User(addAccountParams.name, addAccountParams.email);
@@ -71,7 +73,7 @@ describe("Unit test account use case", () => {
 
   test("Should throw if AddAccountRepository throws", async () => {
     const { sut, userRepositoryMock } = makeSut();
-    jest.spyOn(userRepositoryMock, "create").mockImplementationOnce(() => {
+    jest.spyOn(userRepositoryMock, "add").mockImplementationOnce(() => {
       throw new Error();
     });
     const promise = sut.add(mockAccountParams());

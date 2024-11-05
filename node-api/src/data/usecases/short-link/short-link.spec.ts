@@ -24,13 +24,17 @@ const UserMockRepository = (): jest.Mocked<UserRepositoryInterface> => {
       .mockImplementation(() =>
         Promise.resolve(new User("fake_Name", "fakemail@email.com"))
       ),
-    create: jest.fn(),
+    add: jest.fn(),
+    updateAccessToken: jest.fn(),
     checkByEmail: jest.fn(),
+    loadByEmail: jest.fn(),
+    loadByToken: jest.fn(),
   };
 };
 const LinkMockRepository = (): jest.Mocked<LinkRepositoryInterface> => {
   return {
     create: jest.fn(),
+    findByShorterUrl: jest.fn(),
     findAll: jest.fn(),
     update: jest.fn(),
     delete: jest.fn(),

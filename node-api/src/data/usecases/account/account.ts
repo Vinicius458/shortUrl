@@ -16,7 +16,7 @@ export class AccountUseCase implements Account {
       const hashedPassword = await this.hasher.hash(accountData.password);
       const user = new User(accountData.name, accountData.email);
       user.password = hashedPassword;
-      isValid = !!(await this.userRepository.create(user));
+      isValid = !!(await this.userRepository.add(user));
     }
     return isValid;
   }

@@ -22,6 +22,9 @@ export class Link {
   createdAt: Date;
 
   // Relacionamento muitos-para-um
-  @ManyToOne(() => User, (user) => user.links, { onDelete: "CASCADE" })
+  @ManyToOne(() => User, (user) => user.links, {
+    onDelete: "CASCADE",
+    nullable: true,
+  })
   user: User;
 }

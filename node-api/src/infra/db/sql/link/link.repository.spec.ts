@@ -117,6 +117,17 @@ describe("LinkRepository Integration Test", () => {
     expect(afterUpdate?.shortenedUrl).toBe("new123");
   });
 
+  it("should find a link by shortened URL", async () => {
+    const originalUrl = "https://example.com/original-url";
+    const shortenedUrl = "abc123";
+    const link = new Link(shortenedUrl, originalUrl);
+    await linkRepository.create(link);
+    const foundLink = await linkRepository.findByShorterUrl(shortenedUrl);
+
+    expect(foundLink.shortenedUrl).toBe(shortenedUrl);
+    expect(foundLink.originaUrl).toBe(originalUrl);
+  });
+
   it("should throw an erro if the link is not found", async () => {
     await expect(
       linkRepository.update("999", { originaUrl: "https://nonexistent.com" })

@@ -14,7 +14,7 @@ export default class LinkRepository implements LinkRepositoryInterface {
     const link = this.linkRepo.create({
       originalUrl: linkEntity.originaUrl,
       shortenedUrl: linkEntity.shortenedUrl,
-      user: { id: linkEntity.userId },
+      user: linkEntity.userId ? { id: linkEntity.userId } : undefined,
     });
 
     const linkCreated = await this.linkRepo.save(link);
@@ -24,6 +24,13 @@ export default class LinkRepository implements LinkRepositoryInterface {
   async findAll(userId: string): Promise<Array<LinkInterface>> {
     const links = await this.linkRepo.find({ where: { user: { id: userId } } });
     return links.map((link) => new Link(link.shortenedUrl, link.originalUrl));
+  }
+  async findByShorterUrl(shorterUrl: string): Promise<LinkInterface> {
+    const link = await this.linkRepo.findOne({
+      where: { shortenedUrl: shorterUrl },
+    });
+
+    return new Link(link!.shortenedUrl, link!.originalUrl);
   }
 
   async update(linkId: string, updateData: Partial<Link>): Promise<void> {
@@ -39,13 +46,7 @@ export default class LinkRepository implements LinkRepositoryInterface {
     await this.linkRepo.save(link);
   }
 
-  async delete(linkId: string): Promise<void> {
-    const link = await this.linkRepo.findOne({ where: { id: linkId } });
-
-    if (!link) {
-      throw new Error("Link not found");
-    }
-
-    await this.linkRepo.remove(link);
+  async delete(userId: string): Promise<void> {
+    await this.linkRepo.delete({ user: { id: userId } });
   }
 }

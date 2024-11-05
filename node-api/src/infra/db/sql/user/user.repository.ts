@@ -3,13 +3,13 @@ import { User as UserModel } from "../user/user.model";
 import { UserRepositoryInterface } from "@/data/protocols/db/user/user-repository.interface";
 import User from "@/domain/entities/user/user";
 
-export default class UserRepository implements UserRepositoryInterface {
+export class UserRepository implements UserRepositoryInterface {
   private userRepo: Repository<UserModel>;
   constructor(private dataSource: DataSource) {
     this.userRepo = this.dataSource.getRepository(UserModel);
   }
 
-  async create(userEntity: User): Promise<string> {
+  async add(userEntity: User): Promise<string> {
     const user = this.userRepo.create({
       name: userEntity.name,
       email: userEntity.email,

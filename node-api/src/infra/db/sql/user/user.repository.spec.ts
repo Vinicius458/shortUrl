@@ -1,5 +1,5 @@
 import { User as UserModel } from "../user/user.model";
-import UserRepository from "./user.repository";
+import { UserRepository } from "./user.repository";
 import User from "@/domain/entities/user/user";
 import { AppDataSource } from "../config/data-source-test";
 
@@ -22,7 +22,7 @@ describe("UserRepository", () => {
   it("should create a user successfully", async () => {
     const user = new User("Test User", "test@example.com");
     user.password = "hashPassword";
-    const userId = await userRepository.create(user);
+    const userId = await userRepository.add(user);
 
     expect(userId).toBeDefined();
 
@@ -37,7 +37,7 @@ describe("UserRepository", () => {
   it("should find a user by ID", async () => {
     const user = new User("Another User", "another@example.com");
     user.password = "hashPassword";
-    const userId = await userRepository.create(user);
+    const userId = await userRepository.add(user);
 
     const foundUser = await userRepository.find(userId);
 
@@ -55,7 +55,7 @@ describe("UserRepository", () => {
   it("should return true if the user with the email exists", async () => {
     const user = new User("Another User", "existing@example.com");
     user.password = "hashPassword";
-    await userRepository.create(user);
+    await userRepository.add(user);
     const emailExists = await userRepository.checkByEmail(
       "existing@example.com"
     );
@@ -74,7 +74,7 @@ describe("UserRepository", () => {
   it("should return user if the user by email exists", async () => {
     const user = new User("Another User", "existing@example.com");
     user.password = "hashPassword";
-    await userRepository.create(user);
+    await userRepository.add(user);
     const userResult = await userRepository.loadByEmail("existing@example.com");
 
     expect(userResult).toBeDefined();
@@ -91,7 +91,7 @@ describe("UserRepository", () => {
   it("should update the access token of an existing user", async () => {
     const user = new User("John Doe", "john.doe@example.com");
     user.password = "securepassword";
-    await userRepository.create(user);
+    await userRepository.add(user);
 
     const newToken = "newAccessToken";
     await userRepository.updateAccessToken(user.id, newToken);
@@ -110,7 +110,7 @@ describe("UserRepository", () => {
   it("should return the user ID for a valid token", async () => {
     const user = new User("John Doe", "john.doe@example.com");
     user.password = "securepassword";
-    const userIdCreated = await userRepository.create(user);
+    const userIdCreated = await userRepository.add(user);
 
     const newToken = "newAccessToken";
     await userRepository.updateAccessToken(user.id, newToken);
