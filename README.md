@@ -49,7 +49,7 @@ Para fazer uma requisição, basta colocar: localhost:5050/api/rota_desejada
   -d '{"name":"seu-nome", "email": "seu-email@example.com", "password": "sua-senha"}'
 
 #### Login de Usuário
-- **POST api/auth/login** - Criação de um novo usuário.
+- **POST api/auth/login** - Acessa a conta do usuário.
 
    ```bash
    curl -X POST http://localhost:5000/api/auth/login \
